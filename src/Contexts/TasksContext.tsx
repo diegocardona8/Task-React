@@ -95,5 +95,4 @@ const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     </Context.Provider>
   );
 }
-
 export default TaskContextProvider;
