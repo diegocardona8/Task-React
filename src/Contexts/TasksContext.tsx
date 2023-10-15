@@ -53,19 +53,9 @@ const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addNewTask = async (task: Task) => {
-    console.log("BEFORE");
-    console.log("Tasks:", tasks);
-    console.log("Task to add:", task);
-  
     try {
       const taskadded = await AddTask(task);
-      setTasks((prevTasks)=>{
-        const updatedTasks = [...prevTasks, taskadded];
-        console.log("AFTER");
-        console.log("Task to added:", taskadded);
-        console.log("Tasks:", updatedTasks);
-        return updatedTasks;
-      });
+      setTasks((prevTasks)=>[...prevTasks, taskadded]);
     }catch (error) {
       console.error('Error al agregar una nueva tarea:', error);
     }
