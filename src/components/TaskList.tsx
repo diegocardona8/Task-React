@@ -3,20 +3,10 @@ import { Button, Checkbox, Input, List } from "antd";
 import "../styles/task-list.css";
 import { useTaskContext } from "../Contexts/TasksContext";
 import { Task } from '../Interfaces/Task';
-
+import TaskFilter from './TaskFilter';
 
 function TaskList() {
-  const { tasks,getTasksByStatus,addNewTask,deleteTask,updateTaskStatus } = useTaskContext();
-
-  //1. CHANGES RELATED WITH THE CHECKBOX AND THE UPDATE
-
-    //Estableces este Hook para controlar el estado del checkbox de las tareas completadas
-    const [filterStatus, setFilterStatus] = useState(false);
-
-    //Función que se llama cuando ocurre un cambio en el checkbox para luego,cambiar el estado
-    const handleCheckboxChange  = (checked: boolean) => {
-      setFilterStatus(checked);
-    };
+  const { tasks,addNewTask,deleteTask,updateTaskStatus } = useTaskContext();
 
   //2. CHANGES RELATED WITH THE TASK CREATION PROCESS
 
@@ -39,48 +29,43 @@ function TaskList() {
     const CompletedTask = tasks.filter((task) => task.status);
   
     return (
-      <div className="todo-list">
-      <div>
-        <Checkbox
-          onChange={(e) => handleCheckboxChange(e.target.checked)}
-        >
-        Completada
-        </Checkbox>
-        <Button onClick={() =>getTasksByStatus(filterStatus)}>Search</Button>
-      </div>
-        <h1>My Task List</h1>
-        <List
-          dataSource={tasks}
-          renderItem={(task) => (
-            <List.Item
-              key={task.id}
-              actions={[
-                <Checkbox
-                  checked={task.status}
-                  onChange={() => updateTaskStatus(task.id, !task.status)}
-                >
-                  Completed
-                </Checkbox>,
-                <Button onClick={() => deleteTask(task.id)} danger>
-                  Delete
-                </Button>,
-              ]}
-            >
-              {task.taskName}
-            </List.Item>
-          )}
-        />
-        <div>
-        <Input
-            type="text"
-            onChange={handleInputChange}
-            placeholder="New Task"
-          />
-          <Button onClick={()=>addNewTask(newTask)}>Add</Button>
+      <div className="list">
+        <div className="filter-section">
+          <TaskFilter />
         </div>
         <div>
-          <p>Pendding Task {PeddingTask.length}</p>
-          <p>Completed Task {CompletedTask.length}</p>
+          <h1>Your Task List</h1>
+          <List
+            dataSource={tasks}
+            renderItem={(task) => (
+              <List.Item
+                key={task.id}
+                actions={[        
+                  <Checkbox
+                    checked={task.status}
+                    onChange={() => updateTaskStatus(task.id, !task.status)}
+                  >
+                  </Checkbox>,
+                  <span>{task.taskName}</span>,
+                  <Button onClick={() => deleteTask(task.id)} danger>
+                    Delete
+                  </Button>
+                ]}
+              />
+            )}
+          />
+          <div>
+            <Input
+              type="text"
+              onChange={handleInputChange}
+              placeholder="New Task"
+            />
+            <Button onClick={()=> addNewTask(newTask)}>Add</Button>
+          </div>
+          <div>
+            <p>Pending Task {PeddingTask.length}</p>
+            <p>Completed Task {CompletedTask.length}</p>
+          </div>
         </div>
       </div>
     );

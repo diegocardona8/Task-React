@@ -6,6 +6,7 @@ import TaskList from './components/TaskList';
 import TaskContextProvider from './Contexts/TasksContext'
 
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -13,7 +14,6 @@ root.render(
   <React.StrictMode>
     <TaskContextProvider>
       <TaskList />
-      {/* Otros componentes que necesiten el contexto */}
     </TaskContextProvider>
   </React.StrictMode>,
 );

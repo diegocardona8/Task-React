@@ -13,6 +13,7 @@ import { TaskContextType } from '../Interfaces/TaskContextType';
 // 1. Crear el contexto
 const Context = createContext<TaskContextType>({
   tasks: [],
+  getAllTask:() =>{},
   getTasksByStatus: () => {},
   addNewTask: () => {},
   updateTaskStatus: () => {},
@@ -86,6 +87,7 @@ const TaskContextProvider = ({ children }: { children: ReactNode }) => {
   return (
     <Context.Provider value={{
       tasks,
+      getAllTask,
       getTasksByStatus,
       addNewTask,
       updateTaskStatus,
