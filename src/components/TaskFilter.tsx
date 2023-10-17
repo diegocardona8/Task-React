@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Switch } from "antd";
+import "../styles/task-filter.css";
 import { useTaskContext } from "../Contexts/TasksContext";
 
 function TaskFilter() {

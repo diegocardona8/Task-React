@@ -1,9 +1,44 @@
-.list {
+.filter-section{
+  padding-top: 20px;
+}
+
+h1{
+  text-align: center;
+}
+
+.list-task{
+  text-align: left;
+}
+
+.summary-container {
     text-align: center;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
+}
+
+.list-Items {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  margin: 2% 30%;
+  padding: 1% 5%;
+}
+
+.name {
+  flex-grow: 1;
+  margin-right: 100px;
+  white-space: nowrap;
+  display: flex;
+  align-items: left;
+}
+
+.delete-button {
+  margin-left: 10px;
+  display: block; /* Esto hará que los botones se muestren uno debajo del otro */
+  margin: 2% 6%;
+  justify-content: center; /* Esto agrega un margen superior e inferior para separar los botones */
+}
+
+
+
+
+
+
