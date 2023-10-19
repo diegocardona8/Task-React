@@ -4,14 +4,11 @@ import "../styles/task-list.css";
 import { useTaskContext } from "../Contexts/TasksContext";
 import TaskFilter from './TaskFilter';
 import NewTask from './NewTask';
+import Summary from './Summary';
 
 function TaskList() {
   const { tasks,deleteTask,updateTaskStatus } = useTaskContext();
-
-    //3. SUMARRY
-    const PeddingTask = tasks.filter((task) => !task.status);
-    const CompletedTask = tasks.filter((task) => task.status);
-
+    
     return (
       <div className="list-container">
         <div className="filter-section">
@@ -45,10 +42,7 @@ function TaskList() {
           />
         </div>
         <NewTask/>
-        <div className="summary-container">
-            <p>Pending Task {PeddingTask.length}</p>
-            <p>Completed Task {CompletedTask.length}</p>
-          </div>
+        <Summary/>
       </div>
     );
 }
