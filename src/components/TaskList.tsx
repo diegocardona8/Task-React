@@ -1,14 +1,25 @@
 import { Checkbox, List } from "antd";
-import { DeleteTwoTone } from "@ant-design/icons";
+import { DeleteTwoTone, WarningOutlined} from "@ant-design/icons";
 import "../styles/task-list.css";
 import { useTaskContext } from "../Contexts/TasksContext";
 import TaskFilter from './TaskFilter';
 import NewTask from './NewTask';
 import Summary from './Summary';
+import { useState } from "react";
 
 function TaskList() {
   const { tasks,deleteTask,updateTaskStatus } = useTaskContext();
-    
+
+  const [highlightedTasks, setHighlightedTasks] = useState<{[key:number]:boolean}>({});
+
+  const handlePriority = (taskId:number) =>{
+    setHighlightedTasks((previousTask)=>{
+      const newHighlightedTasks = {...previousTask};
+      newHighlightedTasks[taskId] = !newHighlightedTasks[taskId];
+      return newHighlightedTasks;
+    });
+  };
+
     return (
       <div className="list-container">
         <div className="filter-section">
@@ -20,7 +31,7 @@ function TaskList() {
             dataSource={tasks}
             renderItem={(task) => (
               <div className="list-Items">
-                <List.Item
+                <List.Item style={{background: highlightedTasks[task.id] ? 'yellow' : 'transparent'}}
                 key={task.id}
                 actions={[
                   <Checkbox
@@ -33,8 +44,11 @@ function TaskList() {
                     onClick={() => deleteTask(task.id)}
                     style={{fontSize: '20px' }}
                   >
-                    Delete
                   </DeleteTwoTone>,
+                  <WarningOutlined
+                    onClick={()=>handlePriority(task.id)}
+                  >
+                  </WarningOutlined>
                 ]}
               />
               </div>
