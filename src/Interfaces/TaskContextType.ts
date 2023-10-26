@@ -7,4 +7,5 @@ export interface TaskContextType {
     addNewTask: (task: Task) => void; 
     updateTaskStatus: (id: number, isCompleted: boolean) => void;
     deleteTask: (taskId: number) => void;
+    orderTask: (newOrder:Task[]) =>void,
   }

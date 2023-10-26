@@ -5,6 +5,8 @@ import { useTaskContext } from "../Contexts/TasksContext";
 import TaskFilter from './TaskFilter';
 import NewTask from './NewTask';
 import Summary from './Summary';
+import OrderTask from './OrderTask';
+
 import { useState } from "react";
 
 function TaskList() {
@@ -42,13 +44,13 @@ function TaskList() {
                   <span className="name">{task.taskName}</span>,
                   <DeleteTwoTone  className="delete-button"
                     onClick={() => deleteTask(task.id)}
-                    style={{fontSize: '20px' }}
                   >
                   </DeleteTwoTone>,
                   <WarningOutlined
                     onClick={()=>handlePriority(task.id)}
                   >
-                  </WarningOutlined>
+                  </WarningOutlined>,
+                  <OrderTask taskId ={task.id}/>
                 ]}
               />
               </div>

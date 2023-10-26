@@ -18,6 +18,7 @@ const Context = createContext<TaskContextType>({
   addNewTask: () => {},
   updateTaskStatus: () => {},
   deleteTask: () => {},
+  orderTask: (newOrder:Task[]) =>{},
 });
 
 // 2. Crear una función para devolver los datos del contexto que también se compartirán con otros componentes
@@ -84,6 +85,10 @@ const TaskContextProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const orderTask = (newOrder:Task[]) => {
+    setTasks(newOrder);
+  };
+
   return (
     <Context.Provider value={{
       tasks,
@@ -92,6 +97,7 @@ const TaskContextProvider = ({ children }: { children: ReactNode }) => {
       addNewTask,
       updateTaskStatus,
       deleteTask,
+      orderTask,
     }}>
       {children}
     </Context.Provider>
