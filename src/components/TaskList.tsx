@@ -25,7 +25,7 @@ function TaskList() {
     return (
       <div className="list-container">
         <div className="filter-section">
-          <TaskFilter />
+          <TaskFilter styleVariant="" disabled={true}/>
         </div>
         <div className="list-task">
           <h1>Your Task List</h1>

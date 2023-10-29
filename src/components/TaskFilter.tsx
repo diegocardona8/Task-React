@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Switch } from "antd";
 import "../styles/TaskFilter.css";
 import { useTaskContext } from "../Contexts/TasksContext";
+import { TaskFilterProps } from "../Interfaces/TaskFilterProps";
 
-function TaskFilter() {
+function TaskFilter({styleVariant,disabled}: TaskFilterProps) {
   const { getAllTask, getTasksByStatus } = useTaskContext();
   
   const [showCompleted, setShowCompleted] = useState(false);
@@ -32,7 +33,7 @@ function TaskFilter() {
   };
 
   return (
-    <div className="filters">
+    <div className={`filters ${styleVariant}`}>
       <div className="completed-filter">
         <Switch
           onChange={handleCompletedTask}
