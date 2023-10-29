@@ -4,9 +4,12 @@ import "../styles/TaskFilter.css";
 import { useTaskContext } from "../Contexts/TasksContext";
 import { TaskFilterProps } from "../Interfaces/TaskFilterProps";
 
-function TaskFilter({styleVariant,disabled}: TaskFilterProps) {
+function TaskFilter({
+  styleVariant,
+  disabled}: TaskFilterProps) {
+    
   const { getAllTask, getTasksByStatus } = useTaskContext();
-  
+
   const [showCompleted, setShowCompleted] = useState(false);
   const [showPending, setShowPending] = useState(false);
 

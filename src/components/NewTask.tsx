@@ -4,11 +4,15 @@ import "../styles/new-Task.css";
 import { Task } from '../Interfaces/Task';
 import { useTaskContext } from "../Contexts/TasksContext";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { NewTaskProps } from "../Interfaces/NewTaskProps";
 
-function NewTask(){
+function NewTask({
+    isAddButtonShow,
+    isCancelButtonShow,
+    modalTitle,
+    iconColor} : NewTaskProps){
 
     //CHANGES RELATED WITH THE TASK CREATION PROCESS
-
     const { addNewTask } = useTaskContext();
 
     const [newTask, setNewTask] = useState<Task>({
@@ -38,14 +42,14 @@ function NewTask(){
 
     return(
         <div className="container">
-        <PlusCircleOutlined onClick={showNewTaskWindow} 
-        style={{fontSize: '50px' }} />
+        <PlusCircleOutlined onClick={showNewTaskWindow}
+        style={{fontSize: '50px', color: iconColor}} />
         <Modal
-            title="Hi, Add new task"
+            title={modalTitle}
             open={isTaskWindowVisible}
             okText={"Add"}
-            onOk={handleAddNewTask}
-            onCancel={handleCancelNewTask}
+            onOk={ isAddButtonShow ? handleAddNewTask : undefined}
+            onCancel={ isCancelButtonShow ? handleCancelNewTask : undefined}
         >
             <Input
                 type="text"

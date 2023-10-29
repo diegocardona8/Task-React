@@ -57,7 +57,12 @@ function TaskList() {
             )}
           />
         </div>
-        <NewTask/>
+        <NewTask
+             isAddButtonShow={true}
+             isCancelButtonShow={true}
+             modalTitle="Hi, Add new task"
+             iconColor="blue"
+        />
         <Summary/>
       </div>
     );
